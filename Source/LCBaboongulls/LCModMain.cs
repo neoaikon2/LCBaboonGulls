@@ -8,8 +8,7 @@ namespace LCBaboongulls
 {
     // Plugin defs
     [BepInPlugin("org.bepinex.plugins.lethalcompany.baboongulls", "LCBaboonGulls", "1.0.0")]
-    [BepInProcess("Lethal Company.exe")]
-    [BepInDependency("BepInEx-BepInExPack-5.4.2100")]
+    [BepInProcess("Lethal Company.exe")]    
     public class LCModMain :BaseUnityPlugin
     {
         // Seagull SFX Members
