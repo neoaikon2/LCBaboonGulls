@@ -7,18 +7,18 @@ using UnityEngine;
 namespace LCBaboongulls
 {
     // Plugin defs
-    [BepInPlugin("org.bepinex.plugins.lethalcompany.baboongulls", "LCBaboonGulls", "1.0.0")]
+    [BepInPlugin("org.bepinex.plugins.lethalcompany.baboongulls", "LCBaboonGulls", "1.0.2")]
     [BepInProcess("Lethal Company.exe")]    
     public class LCModMain :BaseUnityPlugin
     {
         // Seagull SFX Members
-        readonly string assetBundlePath = "\\baboongullsfx.data";
+        readonly string assetBundlePath = "\\Crypto_Neo-LCBaboonGulls\\baboongullsfx.data";
         public static AudioClip sfxMine = AudioClip.Create("null", 1024, 1, 12000, false);
         GameObject sfxTester = new GameObject();
         private void Awake()
         {
             // Get the path to the seagull sfx asset bundle
-            string sfxPath = BepInEx.Paths.PatcherPluginPath + assetBundlePath;
+            string sfxPath = BepInEx.Paths.PluginPath + assetBundlePath;
 #if DEBUG            
             Logger.LogDebug("Attempting to load asset bundle...");
 #endif
@@ -27,8 +27,10 @@ namespace LCBaboongulls
             {
                 AssetBundle sfxBundle = AssetBundle.LoadFromFile(sfxPath);
                 sfxMine = (AudioClip)sfxBundle.LoadAsset("Assets/mine.mp3");
+#if DEBUG
                 sfxTester = (GameObject)sfxBundle.LoadAsset("Assets/BaboonGullSfxTester.prefab");
                 Logger.LogDebug("Asset bundle loaded successfully!");
+#endif
                 Baboonhawk_Patches.seagullsMine = sfxMine;
                 Baboonhawk_Patches.seagullTester = sfxTester;
             } catch(Exception ex)
